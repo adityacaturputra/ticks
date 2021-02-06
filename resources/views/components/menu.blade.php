@@ -1,7 +1,7 @@
-<div>
+<nav class="nav flex-column">
     @foreach ($list as $row)
-        {{ $row }}
+        <a href="#" class="nav-link">
+            {{ $row['label'] }}
+        </a>
     @endforeach
-    {{ $nama }}
-    {{ $active }}
-</div>
+</nav>
