@@ -73,6 +73,7 @@
         </nav>
 
         <main class="py-4">
+            <x-menu nama="team adit" :active="$active"/>
             @yield('content')
         </main>
     </div>
