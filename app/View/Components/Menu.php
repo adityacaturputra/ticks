@@ -45,4 +45,10 @@ class Menu extends Component
             ]
         ];
     }
+
+    public function isActive($label){
+        if ($label === $this->active){
+            return 'active';
+        }
+    }
 }
