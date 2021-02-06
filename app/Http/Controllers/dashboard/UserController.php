@@ -72,7 +72,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        dd($id);
     }
 
     /**
