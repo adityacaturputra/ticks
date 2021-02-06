@@ -15,16 +15,21 @@ class UserController extends Controller
      */
     public function index(Request $request, User $users)
     {
-        $q = $request->input('q');
-
         $active = 'Users';
+
+        $q = $request->input('q');
 
         $users = $users->when($q, function($query) use ($q){
                     return $query->where('name', 'like', '%'.$q.'%')
                                 ->orWhere('email', 'like', '%'.$q.'%');
                 })
                 ->paginate(10);
-        return view('dashboard/user/list' , ['users' => $users, 'active' => $active]);
+
+        $request = $request->all();
+        return view('dashboard/user/list' , ['users' => $users,
+                                            'active' => $active,
+                                            'request' => $request
+                                            ]);
     }
 
     /**
