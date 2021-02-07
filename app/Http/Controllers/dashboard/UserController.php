@@ -88,7 +88,11 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = USER::find($id);
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->save();
+        return redirect('dashboard/users');
     }
 
     /**
