@@ -54,3 +54,8 @@ table.table tr td {
   align-items: center;
 }
 
+.form-group label {
+  margin-bottom: 0px;
+  font-weight: bold;
+}
+
