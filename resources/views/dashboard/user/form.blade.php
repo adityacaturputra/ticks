@@ -15,7 +15,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-8 offset-md-2">
-                    <form action="{{ url('dashboard/user/update/'.$user->id) }}" method="POST">
+                    <form action="{{ route('dashboard.users.edit', ['id' => $user->id]) }}" method="POST">
                         @csrf
                         @method('put')
                         <div class="form-group">
@@ -53,7 +53,7 @@
                     <p>Anda yakin ingin hapus user {{ $user->name }}</p>
                 </div>
                 <div class="modal-footer">
-                    <form action="{{ url('dashboard/user/delete/'.$user->id) }}" method="POST">
+                    <form action="{{ route('dashboard.users.delete', ['id' => $user->id]) }}" method="POST">
                     @csrf
                     @method('delete')
                     <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Delete</button>
