@@ -15,7 +15,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-8 offset-md-2">
-                    <form action="{{ route('dashboard.users.edit', ['id' => $user->id]) }}" method="POST">
+                    <form action="{{ route('dashboard.users.update', ['id' => $user->id]) }}" method="POST">
                         @csrf
                         @method('put')
                         <div class="form-group">

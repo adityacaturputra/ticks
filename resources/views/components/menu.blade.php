@@ -1,6 +1,6 @@
 <nav class="nav flex-column">
     @foreach ($list as $row)
-        <a href="#" class="nav-link {{ $isActive($row['label']) }}">
+        <a href="{{ route($row['route']) }}" class="nav-link {{ $isActive($row['label']) }}">
             {{ $row['label'] }}
         </a>
     @endforeach

@@ -20,7 +20,10 @@ Route::get('/', function () {
 Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/dashboard', 'Dashboard\DashboardController@index');
+Route::get('/dashboard', 'Dashboard\DashboardController@index')->name('dashboard');
+Route::get('/dashboard/movies', 'Dashboard\MoviesController@index')->name('dashboard.movies');
+Route::get('/dashboard/theaters', 'Dashboard\TheaterController@index')->name('dashboard.theaters');
+Route::get('/dashboard/tickets', 'Dashboard\TicketController@index')->name('dashboard.tickets');
 
 Route::middleware('auth')->group(function(){
     //Users
