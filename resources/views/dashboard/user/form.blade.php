@@ -8,7 +8,7 @@
                     <h3>Users</h3>
                 </div>
                 <div class="col-4 text-right">
-                    <button class="btn btn-sm text-secondary" data-toggle="modal" data-target="#delete-modal">Delete</button>
+                    <button class="btn btn-sm text-secondary" data-toggle="modal" data-target="#delete-modal"><i class="fas fa-trash"></i></button>
                 </div>
             </div>
         </div>
@@ -47,6 +47,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5>Delete</h5>
+                    <button class="close" data-dismiss="modal">x</button>
                 </div>
                 <div class="modal-body">
                     <p>Anda yakin ingin hapus user {{ $user->name }}</p>
@@ -55,7 +56,7 @@
                     <form action="{{ url('dashboard/user/delete/'.$user->id) }}" method="POST">
                     @csrf
                     @method('delete')
-                    <button class="btn btn-sm btn-danger">Delete</button>
+                    <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Delete</button>
                     </form>
                 </div>
             </div>
