@@ -22,8 +22,8 @@ Auth::routes();
 // Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'Dashboard\DashboardController@index');
 //Users
-Route::get('/dashboard/users', 'Dashboard\UserController@index');
-Route::get('/dashboard/user/edit/{id}', 'Dashboard\UserController@edit');
-Route::put('/dashboard/user/update/{id}', 'Dashboard\UserController@update');
-Route::delete('/dashboard/user/delete/{id}', 'Dashboard\UserController@destroy');
+Route::get('/dashboard/users', 'Dashboard\UserController@index')->name('dashboard.users');
+Route::get('/dashboard/user/edit/{id}', 'Dashboard\UserController@edit')->name('dashboard.user.edit');
+Route::put('/dashboard/user/update/{id}', 'Dashboard\UserController@update')->name('dashboard.user.update');
+Route::delete('/dashboard/user/delete/{id}', 'Dashboard\UserController@destroy')->name('dashboard.user.delete');
 
