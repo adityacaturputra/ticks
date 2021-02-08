@@ -47,7 +47,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5>Delete</h5>
-                    <button class="close" data-dismiss="modal">x</button>
+                    <button class="close" data-dismiss="modal"><i class="fas fa-times"></i></button>
                 </div>
                 <div class="modal-body">
                     <p>Anda yakin ingin hapus user {{ $user->name }}</p>
