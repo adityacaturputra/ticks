@@ -5,10 +5,10 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-8 align-self-center">
-                    <h3>Users</h3>
+                    <h3>Movies</h3>
                 </div>
                 <div class="col-4">
-                    <form action="{{ route('dashboard.users') }}" method="GET">
+                    <form action="{{ route('dashboard.movies') }}" method="GET">
                         <div class="input-group">
                             <input type="text" class="form-control form-control-sm" name="q" value="{{ $request['q'] ?? '' }}">
                             <div class="input-group-append">
@@ -24,28 +24,24 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Nama</th>
-                        <th>Email</th>
-                        <th>Registerd</th>
-                        <th>Edited</th>
+                        <th>Title</th>
+                        <th>Thumbnail</th>
                         <th>&nbsp;</th>
                     </tr>
                 </thead>
                 <tbody>
-                @foreach ($users as $user)
+                @foreach ($movies as $movie)
                     <tr>
-                        <th scope="row">{{ $loop->iteration + ($users->currentPage() - 1) * $users->perPage() }}</th>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>{{ $user->created_at }}</td>
-                        <td>{{ $user->updated_at }}</td>
-                        <td><a title="edit" href="{{ route('dashboard.users.edit' , ['id' => $user->id]) }}" class="btn btn-success btn-sm"><i class="fas fa-pen"></i></a></td>
+                        <th scope="row">{{ $loop->iteration + ($movies->currentPage() - 1) * $movies->perPage() }}</th>
+                        <td>{{ $movie->title }}</td>
+                        <td>{{ $movie->thumbnail }}</td>
+                        <td><a title="edit" href="{{ route('dashboard.movies.edit' , ['id' => $movie->id]) }}" class="btn btn-success btn-sm"><i class="fas fa-pen"></i></a></td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
 
-            {{ $users->appends($request)->links() }}
+            {{ $movies->appends($request)->links() }}
         </div>
     </div>
 @endsection
