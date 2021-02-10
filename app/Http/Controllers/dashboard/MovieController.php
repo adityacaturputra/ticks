@@ -25,10 +25,11 @@ class MovieController extends Controller
                 ->paginate(10);
 
         $request = $request->all();
-        return view('dashboard/movie/list' , ['movies' => $movies,
-                                            'active' => $active,
-                                            'request' => $request
-                                            ]);
+        return view('dashboard/movie/list' , [
+            'movies' => $movies,
+            'active' => $active,
+            'request' => $request
+            ]);
     }
 
     /**
@@ -38,7 +39,7 @@ class MovieController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard/movie/form' , ['active' => 'Movies']);
     }
 
     /**

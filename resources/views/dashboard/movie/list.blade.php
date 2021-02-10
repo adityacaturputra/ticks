@@ -1,6 +1,9 @@
 @extends('layouts.dashboard');
 
 @section('content')
+    <div class="mb-2">
+        <a href="{{ route('dashboard.movies.create') }}" class="btn btn-primary-outline">+ Movie</a>
+    </div>
     <div class="card">
         <div class="card-header">
             <div class="row">
