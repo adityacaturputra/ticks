@@ -27,19 +27,23 @@
                 <table class="table table-borderless table-striped table-hover">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Title</th>
                             <th>Thumbnail</th>
+                            <th>Title</th>
                             <th>&nbsp;</th>
                         </tr>
                     </thead>
                     <tbody>
                     @foreach ($movies as $movie)
                         <tr>
-                            <th scope="row">{{ $loop->iteration + ($movies->currentPage() - 1) * $movies->perPage() }}</th>
-                            <td>{{ $movie->title }}</td>
+                            <td class="col-thumbnail">
+                                <img src="{{ asset('storage/movies/'. $movie->thumbnail) }}" class="img-fluid" alt="thumbnail">
+                            </td>
                             <td>
-                                <img src="{{ asset('storage/movies/'. $movie->thumbnail) }}" width="300" alt="">
+                                <h4>
+                                    <strong>
+                                        {{ $movie->title }}
+                                    </strong>
+                                </h4>
                             </td>
                             <td><a title="edit" href="{{ route('dashboard.movies.edit' , ['id' => $movie->id]) }}" class="btn btn-success btn-sm"><i class="fas fa-pen"></i></a></td>
                         </tr>
