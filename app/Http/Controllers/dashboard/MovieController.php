@@ -41,7 +41,11 @@ class MovieController extends Controller
      */
     public function create()
     {
-        return view('dashboard/movie/form' , ['active' => 'Movies']);
+        return view('dashboard/movie/form' , [
+            'active' => 'Movies',
+            'button'    => 'Create',
+            'url'       => 'dashboard.movies.store'
+            ]);
     }
 
     /**
@@ -96,10 +100,11 @@ class MovieController extends Controller
     public function edit(Movie $movie)
     {
 
-        dd($movie);
         return view('dashboard.movie.form', [
-            'movies' => $movie,
-            'active' => 'Movies'
+            'movie'     => $movie,
+            'active'    => 'Movies',
+            'button'    => 'Update',
+            'url'       => 'dashboard.movies.update'
             ]);
     }
 
