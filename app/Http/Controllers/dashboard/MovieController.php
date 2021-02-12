@@ -115,9 +115,31 @@ class MovieController extends Controller
      * @param  \App\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    public function update($id)
+    public function update(Request $request, Movie $movie)
     {
+        $validator = Validator::make($request->all(), [
+            'title'         => 'required|unique:App\Models\Movie,title,'.$movie->id,
+            'description'   => 'required'
+            // ,
+            // 'thumbnail'     => 'image'
+        ]);
+        if($validator->fails()){
+            return redirect()
+                ->route('dashboard.movies.edit', $movie->id)
+                ->withErrors($validator)
+                ->withInput();
+        }else{
+            // $image = $request->file('thumbnail');
+            // $fileName = time() . '.' . $image->getClientOriginalExtension();
+            // Storage::disk('local')->putFileAs('public/movies', $image, $fileName);
 
+            $movie->title = $request->input('title');
+            $movie->description = $request->input('description');
+            // $movie->thumbnail = $fileName;
+            $movie->save();
+
+            return redirect()->route('dashboard.movies');
+        }
     }
 
     /**
