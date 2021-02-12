@@ -93,9 +93,13 @@ class MovieController extends Controller
      * @param  \App\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    public function edit(Movie $movie)
+    public function edit($id)
     {
-        //
+        $movie = MOVIE::find($id);
+        return view('dashboard.movie.formEdit', [
+            'movie' => $movie,
+            'active' => 'Movies'
+            ]);
     }
 
     /**
@@ -105,7 +109,7 @@ class MovieController extends Controller
      * @param  \App\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Movie $movie)
+    public function update($id)
     {
 
     }
