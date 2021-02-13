@@ -24,14 +24,14 @@
                         @endif
                         <div class="form-group">
                             <label for="title">Title</label>
-                            <input type="text" class="form-control" name="title" value="{{ $movie->title ?? '' }}">
+                            <input type="text" class="form-control" name="title" value="{{ old('title') ?? $movie->title ?? '' }}">
                             @error('title')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>
-                            <textarea name="description" class="form-control" cols="30" rows="10">{{ $movie->description ?? '' }}</textarea>
+                            <textarea name="description" class="form-control" cols="30" rows="10">{{ old('description') ?? $movie->description ?? '' }}</textarea>
                             @error('description')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
