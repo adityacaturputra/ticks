@@ -76,7 +76,9 @@ class MovieController extends Controller
             $movie->thumbnail = $fileName;
             $movie->save();
 
-            return redirect()->route('dashboard.movies');
+            return redirect()
+                ->route('dashboard.movies')
+                ->with('message', 'ditambahkan');
         }
     }
 
@@ -140,7 +142,9 @@ class MovieController extends Controller
             $movie->description = $request->input('description');
             $movie->save();
 
-            return redirect()->route('dashboard.movies');
+            return redirect()
+                ->route('dashboard.movies')
+                ->with('message', 'diubah');
         }
     }
 
@@ -154,6 +158,7 @@ class MovieController extends Controller
     {
         $movie->delete();
 
-        return redirect()->route('dashboard.movies');
+        return redirect()->route('dashboard.movies')
+            ->with('message', 'dihapus');
     }
 }
