@@ -7,7 +7,7 @@
                 <div class="col-8 align-self-center">
                     <h3>Movie</h3>
                 </div>
-                @if ($button == 'Update')
+                @if (isset($movie))
                     <div class="col-4 text-right">
                         <button class="btn btn-sm text-secondary" data-toggle="modal" data-target="#delete-modal"><i class="fas fa-trash"></i></button>
                     </div>
@@ -19,7 +19,7 @@
                 <div class="col-md-8 offset-md-2">
                     <form action="{{ route($url , $movie->id ?? '') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        @if ($button == 'Update')
+                        @if (isset($movie))
                             @method('put')
                         @endif
                         <div class="form-group">
@@ -56,7 +56,7 @@
             </div>
         </div>
     </div>
-@if ($button == 'Update')
+@if (isset($movie))
     <div class="modal fade" id="delete-modal">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -68,7 +68,7 @@
                     <p>Anda yakin ingin hapus movie {{ $movie->name }}</p>
                 </div>
                 <div class="modal-footer">
-                    <form action="{{ route('dashboard.movies.delete', ['id' => $movie->id]) }}" method="POST">
+                    <form action="{{ route('dashboard.movies.delete', $movie->id) }}" method="POST">
                     @csrf
                     @method('delete')
                     <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Delete</button>
