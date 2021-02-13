@@ -36,17 +36,17 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
-                        @if ($button == 'Create')
-                            <div class="form-group mt-4">
-                                <div class="custom-file">
-                                    <label for="thumbnail" class="custom-file-label">Thumbnail</label>
-                                    <input type="file" name="thumbnail" class="custom-file-input">
-                                    @error('thumbnail')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
+
+                        <div class="form-group mt-4">
+                            <div class="custom-file">
+                                <label for="thumbnail" class="custom-file-label">Thumbnail</label>
+                                <input type="file" name="thumbnail" class="custom-file-input">
+                                @error('thumbnail')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
-                        @endif
+                        </div>
+
                         <div class="form-group mb-0">
                             <button type="button" onclick="window.history.back()" class="btn btn-secondary btn-sm">Cancel</button>
                             <button type="submit" class="btn btn-success btn-sm">{{ $button }}</button>

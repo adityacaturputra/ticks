@@ -129,13 +129,15 @@ class MovieController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }else{
-            // $image = $request->file('thumbnail');
-            // $fileName = time() . '.' . $image->getClientOriginalExtension();
-            // Storage::disk('local')->putFileAs('public/movies', $image, $fileName);
+            if($request->hasFile('thumbnail')){
+                $image = $request->file('thumbnail');
+                $fileName = time() . '.' . $image->getClientOriginalExtension();
+                Storage::disk('local')->putFileAs('public/movies', $image, $fileName);
+                $movie->thumbnail = $fileName;
+            }
 
             $movie->title = $request->input('title');
             $movie->description = $request->input('description');
-            // $movie->thumbnail = $fileName;
             $movie->save();
 
             return redirect()->route('dashboard.movies');
