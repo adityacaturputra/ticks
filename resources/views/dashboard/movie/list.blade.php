@@ -7,7 +7,7 @@
 
     @if (session()->has('message'))
         <div class="alert alert-success">
-            <strong>Data movie berhasil {{ session()->get('message') }}</strong>
+            <strong>{{ session()->get('message') }}</strong>
             <button type="button" class="close" data-dismiss="alert" ><span>&times;</span></button>
         </div>
     @endif
