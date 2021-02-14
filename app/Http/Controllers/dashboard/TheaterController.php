@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Theater;
 use Illuminate\Http\Request;
 
 class TheaterController extends Controller
