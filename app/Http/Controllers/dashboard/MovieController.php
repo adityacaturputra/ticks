@@ -22,7 +22,7 @@ class MovieController extends Controller
         $q = $request->input('q');
 
         $movies = $movies->when($q, function($query) use ($q){
-                    return $query->where('name', 'like', '%'.$q.'%');
+                    return $query->where('title', 'like', '%'.$q.'%');
                 })
                 ->paginate(10);
 

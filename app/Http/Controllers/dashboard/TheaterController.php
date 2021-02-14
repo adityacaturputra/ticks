@@ -18,7 +18,7 @@ class TheaterController extends Controller
         $q = $request->input('q');
         $theaters = $theaters
                     ->when($q, function($query) use ($q){
-                        return $query->where('name', 'like', '%'.$q.'%');})
+                        return $query->where('theater', 'like', '%'.$q.'%');})
                     ->paginate(10);
 
         $request = $request->all();
