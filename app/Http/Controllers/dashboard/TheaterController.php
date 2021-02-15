@@ -91,9 +91,14 @@ class TheaterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Theater $theater)
     {
-        //
+        return view('dashboard.theater.form', [
+            'theater' => $theater,
+            'active' => 'Theaters',
+            'button' => 'Update',
+            'url'    => 'dashboard.theaters.update'
+        ]);
     }
 
     /**
