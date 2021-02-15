@@ -122,14 +122,13 @@ class TheaterController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }else{
-            $theaterOld = $theater->theater;
             $theater->theater = $request->input('theater');
             $theater->address = $request->input('address');
             $theater->status = $request->input('status');
             $theater->save();
             return redirect()
                 ->route('dashboard.theaters')
-                ->with('message', __('messages.update', ['title' => $theaterOld]));
+                ->with('message', __('messages.update', ['title' => $theater->theater]));
         }
     }
 
