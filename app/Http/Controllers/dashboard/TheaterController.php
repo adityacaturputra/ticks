@@ -138,8 +138,13 @@ class TheaterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Theater $theater)
     {
-        //
+        $theaterOldName = $theater->theater;
+
+        $theater->delete();
+        return redirect()
+            ->route('dashboard.theaters')
+            ->with('message', __('messages.delete', ['title' => $theaterOldName]));
     }
 }
