@@ -55,7 +55,7 @@ class TheaterController extends Controller
     public function store(Request $request, Theater $theater)
     {
         $validator = Validator::make($request->all(), [
-            'theater' => 'required|unique:App\Models\Theater,theater',
+            'theater' => 'required|unique:App\Models\Theater',
             'address' => 'required',
             'status' => 'required'
         ]);
@@ -108,9 +108,29 @@ class TheaterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Theater $theater)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'theater' => 'required|unique:App\Models\Theater,theater,'.$theater->id,
+            'address' => 'required',
+            'status' => 'required'
+        ]);
+
+        if($validator->fails()){
+            return redirect()
+                ->route('dashboard.theaters.edit', $theater->id)
+                ->withErrors($validator)
+                ->withInput();
+        }else{
+            $theaterOld = $theater->theater;
+            $theater->theater = $request->input('theater');
+            $theater->address = $request->input('address');
+            $theater->status = $request->input('status');
+            $theater->save();
+            return redirect()
+                ->route('dashboard.theaters')
+                ->with('message', __('messages.update', ['title' => $theaterOld]));
+        }
     }
 
     /**
