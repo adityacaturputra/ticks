@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Softdeletes;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Theater extends Model
 {
-    use Softdeletes;
+    use SoftDeletes;
+
+    protected $table = 'theaters';
+
 }
