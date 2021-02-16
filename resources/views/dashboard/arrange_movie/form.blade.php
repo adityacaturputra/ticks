@@ -48,6 +48,25 @@
                             @enderror
                         </div>
 
+                        <div class="form-group form-row mt-4">
+                            <div class="col-2 align-self-center">
+                                <label for="seats">Seats</label>
+                            </div>
+                            <div class="col-5">
+                                <input type="number" class="form-control @error('rows') is-invalid @enderror" name="rows" value="{{ old('rows') ?? $theater->rows ?? '' }}" placeholder="Rows">
+                                @error('rows')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="col-5">
+                                <input type="number" class="form-control @error('columns') is-invalid @enderror" name="columns" value="{{ old('columns') ?? $theater->columns ?? '' }}" placeholder="Columns">
+                                @error('columns')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+
+
                         <div class="mb-2">
                             <div class="form-group mb-0">
                                 <label for="status">Status</label>
