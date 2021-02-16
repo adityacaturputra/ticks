@@ -47,7 +47,6 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
-
                         <div class="form-group form-row mt-4">
                             <div class="col-2 align-self-center">
                                 <label for="seats">Seats</label>
@@ -65,7 +64,17 @@
                                 @enderror
                             </div>
                         </div>
-
+                        <div class="form-group mb-0">
+                            <label for="schedules">Schedules</label>
+                        </div>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <schedule-component></schedule-component>
+                            </div>
+                            @error('columns')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
 
                         <div class="mb-2">
                             <div class="form-group mb-0">
