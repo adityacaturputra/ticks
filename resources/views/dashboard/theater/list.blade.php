@@ -49,7 +49,10 @@
                             <td>
                                 {{ $theater->address }}
                             </td>
-                            <td><a title="edit" href="{{ route('dashboard.theaters.edit' , $theater->id) }}" class="btn btn-success btn-sm"><i class="fas fa-pen"></i></a></td>
+                            <td>
+                                <a title="edit" href="{{ route('dashboard.theaters.edit' , $theater->id) }}" class="btn btn-success btn-sm"><i class="fas fa-pen"></i></a>
+                                <a title="arrange movie" href="{{ route('dashboard.theaters.arrange.movie' , $theater->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-film"></i></a>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>

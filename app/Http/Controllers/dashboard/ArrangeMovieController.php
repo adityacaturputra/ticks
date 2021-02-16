@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
+use App\Models\Movie;
+use App\Models\Theater;
 use App\Models\ArrangeMovie;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ArrangeMovieController extends Controller
 {
@@ -13,9 +15,21 @@ class ArrangeMovieController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, Theater $theater)
     {
-        //
+        $q = $request->input('q');
+        // $theaters = $theaters
+        //             ->when($q, function($query) use ($q){
+        //                 return $query->where('theater', 'like', '%'.$q.'%');})
+        //             ->paginate(10);
+
+        $request = $request->all();
+
+        return view('dashboard.arrange_movie.list', [
+            'active' => 'Theaters',
+            'request' => $request,
+            'theater' => $theater
+        ]);
     }
 
     /**
@@ -23,9 +37,17 @@ class ArrangeMovieController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Theater $theater, Movie $movies)
     {
-        //
+        $movies = $movies->get();
+
+        return view('dashboard.arrange_movie.form', [
+            'url' => 'dashboard.theaters.arrange.movie.store',
+            'theater' => $theater,
+            'movies' => $movies,
+            'button' => 'Create',
+            'active' => 'Theaters'
+        ]);
     }
 
     /**
