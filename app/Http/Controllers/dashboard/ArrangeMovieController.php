@@ -57,10 +57,11 @@ class ArrangeMovieController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, ArrangeMovie $arrMovie)
     {
         $validator = Validator::make($request->all(), [
             'movie_id' => 'required',
+            'theater_id' => 'required',
             'studio' => 'required',
             'price' => 'required',
             'rows' => 'required',
@@ -74,13 +75,22 @@ class ArrangeMovieController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }else{
-            $theater->theater = $request->input('theater');
-            $theater->address = $request->input('address');
-            $theater->status = $request->input('status');
-            $theater->save();
+            $seats = [
+                'rows' => $request->input('rows'),
+                'columns' => $request->input('columns')
+            ];
+
+            $arrMovie->theater_id = $request->input('theater_id');
+            $arrMovie->movie_id = $request->input('movie_id');
+            $arrMovie->studio = $request->input('studio');
+            $arrMovie->price = $request->input('price');
+            $arrMovie->status = $request->input('status');
+            $arrMovie->seats = json_encode($seats);
+            $arrMovie->schedules = json_encode($request->input('schedules'));
+            $arrMovie->save();
             return redirect()
-                ->route('dashboard.theaters')
-                ->with('message', __('messages.store', ['title' => $request->input('theater')]));
+                ->route('dashboard.theaters.arrange.movie', $request->input('theater_id'))
+                ->with('message', __('messages.store', ['title' => $request->input('studio')]));
         }
     }
 
