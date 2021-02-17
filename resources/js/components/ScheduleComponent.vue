@@ -2,7 +2,7 @@
     <div>
         <div class="form-group form-row" v-for="(schedule, index) in schedules">
             <div class="col-11">
-                <input type="text" class="form-control" name="schedule[][]" v-model="schedule.hour" placeholder="Hour (ex : 23:50)">
+                <input type="text" class="form-control" :name="`schedules[${index}][hour]`" v-model="schedule.hour" placeholder="Hour (ex : 23:50)">
             </div>
             <div class="col-1">
                 <button type="button" @click="removeSchedule(index)" class="btn btn-outline-danger">x</button>
@@ -19,12 +19,18 @@
         data : () => ({
             schedules: []
         }),
+        props: ['oldSchedules'],
+        created(){
+                this.schedules = this.oldSchedules
+        },
         methods: {
             addSchedule(){
                 this.schedules.push({
                     hour: ''
                 })
             },
+
+
             removeSchedule(index){
                 this.schedules.splice(index, 1)
             }
