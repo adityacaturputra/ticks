@@ -19,18 +19,22 @@
                 <div class="col-md-8 offset-md-2">
                     <form action="{{ route($url , $theater->id ?? '') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        @if (isset($theater))
-                            @method('put')
-                        @endif
                         <div class="form-group">
                             <label for="movie">Movie</label>
                             <input type="hidden" name="theater_id" value="{{ $theater->id }}">
                             <select name="movie_id" class="form-control">
                                 <option value="">Pilih Movie</option>
                                 @foreach ($movies as $movie)
+                                @if ($movie->id == old('movie_id'))
+                                    <option value="{{ $movie->id }}" selected>{{ $movie->title }}</option>
+                                @else
                                     <option value="{{ $movie->id }}">{{ $movie->title }}</option>
+                                @endif
                                 @endforeach
                             </select>
+                            @error('movie_id')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="form-group">

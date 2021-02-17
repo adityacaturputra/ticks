@@ -7,6 +7,7 @@ use App\Models\Theater;
 use App\Models\ArrangeMovie;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class ArrangeMovieController extends Controller
 {
@@ -58,7 +59,29 @@ class ArrangeMovieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'movie_id' => 'required',
+            'studio' => 'required',
+            'price' => 'required',
+            'rows' => 'required',
+            'columns' => 'required',
+            'schedules' => 'required',
+            'status' => 'required'
+        ]);
+        if($validator->fails()){
+            return redirect()
+                ->route('dashboard.theaters.arrange.movie.create', $request->input('theater_id'))
+                ->withErrors($validator)
+                ->withInput();
+        }else{
+            $theater->theater = $request->input('theater');
+            $theater->address = $request->input('address');
+            $theater->status = $request->input('status');
+            $theater->save();
+            return redirect()
+                ->route('dashboard.theaters')
+                ->with('message', __('messages.store', ['title' => $request->input('theater')]));
+        }
     }
 
     /**
